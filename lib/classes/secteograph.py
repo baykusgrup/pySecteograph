@@ -1,3 +1,6 @@
+from .fileProcessor import FileProcessor
+
+
 class Secteograph:
     x = 'deneme'
 
@@ -9,8 +12,12 @@ class Secteograph:
 
     @staticmethod
     def addTodo(start, end, desc, user):
-        print('Start: %s End: %s Desc: %s User: %s' %
-              (start, end, desc, user))
+        data = {"ID": "1", "user": user, "desc": desc,
+                "start": start, "end": end, "status": "OPEN"}
+        fp = FileProcessor()
+        fp.write(data)
+        # print('Start: %s End: %s Desc: %s User: %s' %
+        #       (start, end, desc, user))
 
     @staticmethod
     def deleteTodo(user, start, end, desc):
@@ -19,6 +26,8 @@ class Secteograph:
 
     @staticmethod
     def getTodo(user, start, end, desc):
+        fp = FileProcessor()
+        fp.read()
         print('Start: %s End: %s Desc: %s User: %s' %
               (start, end, desc, user))
 
