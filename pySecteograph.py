@@ -1,5 +1,6 @@
 import click
 from datetime import datetime
+from lib.classes.secteograph import Secteograph
 
 
 @click.group()
@@ -15,21 +16,19 @@ def main():
 def add(start, end, desc, user):
     #  TODO :: add a to-do to file
     # Examples :: desc from to user
-    click.echo('Start: %s End: %s Desc: %s User: %s' %
-               (start, end, desc, user))
+    Secteograph.addTodo(start, end, desc, user)
 
 
 @click.command()
 @click.option('--user', required=True, type=click.STRING, help='When do you start your to-dos')
 @click.option('--start', type=click.STRING, help='When do you start your to-dos')
 @click.option('--end', type=click.STRING, help='When do you start your to-dos')
-@click.option('-f', is_flag=True, default=False, type=click.STRING, help='When do you start your to-dos')
+@click.option('-f', is_flag=True, required=False, type=click.STRING, help='When do you start your to-dos')
 @click.argument('desc', nargs=1, required=True, type=click.STRING)
-def delete(user, desc, start, date):
+def delete(user, start, end, desc, f):
     #  TODO :: delete a todo by  specific user, start date or end date
     # Examples :: desc from to user
-    click.echo('Start: %s End: %s Desc: %s User: %s' %
-               (start, end, desc, user))
+    Secteograph.deleteTodo(start, end, desc, user)
 
 
 @click.command()
@@ -38,11 +37,10 @@ def delete(user, desc, start, date):
 @click.option('--end', type=click.STRING, help='When do you start your to-dos')
 @click.option('-a', '--all', is_flag=True, default=False, type=click.STRING, help='Get all to-dos')
 @click.argument('desc', nargs=1, required=True, type=click.STRING)
-def get(start, end, desc, user):
+def get(start, end, desc, user, all):
      #  TODO :: get to-do list by  specific user, start date or end date
     # Examples :: desc from to user
-    click.echo('Start: %s End: %s Desc: %s User: %s' %
-               (start, end, desc, user))
+    Secteograph.getTodo(start, end, desc, user)
 
 
 main.add_command(add)
