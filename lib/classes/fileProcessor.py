@@ -39,12 +39,16 @@ class FileProcessor:
         except IOError as identifier:
             pass
 
-    def read(self, force=False):
+    def read(self, line='all', force=False):
         try:
             with self.fileBuffer as f:
                 f.seek(0, 0)
-                lines = f.readlines()
-                for line in lines:
-                    print(line)
+                if line == 'all':
+                    lines = f.readlines()
+                else:
+                    lines = f.readlines()[line]
+                    lines = lines.split(',')
+
         except IOError as identifier:
             pass
+        return lines

@@ -27,7 +27,10 @@ class Secteograph:
     @staticmethod
     def getTodo(user, start, end, desc):
         fp = FileProcessor()
-        fp.read()
+        lines = fp.read()
+        # print(lines)
+        for line in lines:
+            print(line)
         print('Start: %s End: %s Desc: %s User: %s' %
               (start, end, desc, user))
 
